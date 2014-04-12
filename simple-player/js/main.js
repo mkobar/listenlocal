@@ -78,7 +78,7 @@
         });
         
         R.request({
-          method: "getTopCharts", 
+          method: "getHeavyRotation", 
           content: {
             type: "Album"
           },
