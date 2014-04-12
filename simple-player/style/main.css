@@ -10,9 +10,11 @@
   margin: 0 20px 0 0;
 }
 
-.header .icon {
-  width: 100px;
-  height: 100px;
+.section .icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 0 4px 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .header button {
