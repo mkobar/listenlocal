@@ -36,10 +36,25 @@
 console.log("sdlkfjalksdjfae");
 
 R.ready(function() {
-  R.authenticate()
-  R.authenticate( callback(authenticated) )
-  R.authenticate( config )
-  R.player.play({source: "sr4207904"});
+  if (!R.authenticated()) {
+    R.authenticate();
+  }
+  //R.player.play({source: "a341670"});
+  var userID = R.currentUser.attributes.key;
+  R.request({
+    method: "getActivityStream",
+    content: {
+      user: userID,
+      scope: "user",
+      types: "album"
+    },
+    success: function(response) {
+      console.log(response);
+    },
+    error: function(response) {
+      console.log("error: " + response.message);
+    }
+  });
 });
 
 </script>
