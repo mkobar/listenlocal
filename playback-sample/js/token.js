@@ -29,5 +29,5 @@ THE SOFTWARE.
 //   {"status": "ok", "result": "YOUR_PLAYBACK_TOKEN"}
 // then update playback_token below with YOUR_PLAYBACK_TOKEN and the domain below with YOUR_DOMAIN
 
-var playback_token = "GAdTSMKA_____3lubnBzcGZrdGs1ejN5NmVuNDYzdXp0ODAuMC4wLjA_05l-nqjchoXACvOduF36";
-var domain = "0.0.0.0";
+var playback_token = "GBJTSMfK_____3lubnBzcGZrdGs1ejN5NmVuNDYzdXp0OGZlbmRlcmljLmdpdGh1Yi5pbyJv3l_AbXq-083AHSpuTDM=";
+var domain = "fenderic.github.io";
