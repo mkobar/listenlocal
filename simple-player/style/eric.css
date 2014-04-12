@@ -1,3 +1,28 @@
 body {
 	background-color: #ff0;
 }
+
+#poweredby {
+  position: fixed;
+  top: 45px;
+  right: 30px;
+}
+
+#poweredby a {
+  display: block;
+  font-size: 11px;
+  line-height: 24px;
+  padding: 0 10px;
+  background: #32353a;
+  color: #909397;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+  text-decoration: none;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.15), inset 0 1px 4px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.15), inset 0 1px 4px rgba(0,0,0,0.3);
+}
+
+#poweredby a:hover {
+  color: #fff;
+}
