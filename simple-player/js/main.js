@@ -81,7 +81,7 @@
           method: "getHeavyRotation", 
           content: {
             user: "s19773531",
-            type: "Album"
+            type: "albums"
           },
           success: function(response) {
             self.showResults(response.result);
