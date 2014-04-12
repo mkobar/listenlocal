@@ -4,8 +4,13 @@ body {
 
 #poweredby {
   position: fixed;
+  /*
   top: 45px;
   right: 30px;
+  */
+
+  top: 0px;
+  right: 0px;
 }
 
 #poweredby a {
@@ -25,4 +30,13 @@ body {
 
 #poweredby a:hover {
   color: #fff;
+}
+
+#prev_btn, #play_btn, #next_btn {
+	opacity: 0.7;
+}
+
+
+#prev_btn:hover, #play_btn:hover, #next_btn:hover {
+	opacity: 1.0;
 }
