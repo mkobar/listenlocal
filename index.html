@@ -34,10 +34,11 @@
 <!--- ERIC STUFF -->
 <script>
 console.log("sdlkfjalksdjfae");
-R.authenticate()
-R.authenticate( callback(authenticated) )
-R.authenticate( config )
+
 R.ready(function() {
+  R.authenticate()
+  R.authenticate( callback(authenticated) )
+  R.authenticate( config )
   R.player.play({source: "sr4207904"});
 });
 
