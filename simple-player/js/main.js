@@ -70,7 +70,7 @@
           } else {
             //$play.text("play");
             //$play.html("<img src='./img/play.png'>");
-            $("img[src='./img/play.png']").attr('src','./img/pause.png');
+            $("img[src='./img/pause.png']").attr('src','./img/play.png');
           }
         });
         
