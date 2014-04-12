@@ -79,9 +79,10 @@
         
         R.request({
           method: "getHeavyRotation", 
-          /*content: {
+          content: {
+            user: "s19773531",
             type: "Album"
-          },*/
+          },
           success: function(response) {
             self.showResults(response.result);
           },
