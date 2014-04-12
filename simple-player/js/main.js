@@ -79,9 +79,9 @@
         
         R.request({
           method: "getHeavyRotation", 
-          content: {
+          /*content: {
             type: "Album"
-          },
+          },*/
           success: function(response) {
             self.showResults(response.result);
           },
