@@ -65,10 +65,10 @@
         R.player.on("change:playState", function(state) {
           if (state === R.player.PLAYSTATE_PLAYING || state === R.player.PLAYSTATE_BUFFERING) {
             //$play.text("pause");
-            $play.text("<img src='./img/pause.png'>");
+            $play.html("<img src='./img/pause.png'>");
           } else {
             //$play.text("play");
-            $play.text("<img src='./img/play.png'>");
+            $play.html("<img src='./img/play.png'>");
           }
         });
         
