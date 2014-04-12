@@ -35,29 +35,35 @@
   </head>
   <body>
     <div class="header">
-      <div class="section">
+      <!--<div class="section">
         <img class="icon">
       </div>
+    -->
       <div class="section">
+
+        <img class="icon">
+      </br>
+        <!--<button class="prev">previous</button>-->
+        <button class="prev"><img src="./img/prev.png"></button>
         <!--<button class="play">play</button>-->
         <button class="play"><img src="./img/play.png"></button>
         <!--<button class="next">next</button>-->
         <button class="next"><img src="./img/next.png"></button>
-        <!--<button class="prev">previous</button>-->
-        <button class="prev"><img src="./img/prev.png"></button>
       </div>
       <div class="section">
         <div class="track label">Not Playing</div>
         <div class="album-title label"></div>
         <div class="artist label"></div>
       </div>
+      <!--          -->
+      <form class="search">
+        Enter an artist or album name: 
+        <input type="text"/>
+        <button type="submit">Search</button>
+        <div class="error"></div>
+      </form>
+      <!--          -->
     </div>
-    <form class="search">
-      Enter an artist or album name: 
-      <input type="text"/>
-      <button type="submit">Search</button>
-      <div class="error"></div>
-    </form>
     <div class="results"></div>
   </body>
 </html>
