@@ -2,6 +2,14 @@ body {
 	background-color: #46494d;
 }
 
+
+#local {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  font-size: 24px;
+}
+
 #poweredby {
   position: fixed;
   /*
