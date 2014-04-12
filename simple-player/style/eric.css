@@ -11,6 +11,11 @@ body {
   padding: 10px;
 }
 
+#playerControls {
+	left: 0;
+	padding-left: 20px;
+}
+
 #poweredby {
   position: fixed;
   /*
