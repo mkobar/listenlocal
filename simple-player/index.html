@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Player</title>
+    <title>music from where you at</title>
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" type="text/css" href="../lib/normalize.css">
     <link rel="stylesheet" type="text/css" href="../utils/rdio-utils.css">
     <link rel="stylesheet" type="text/css" href="style/main.css">
+    <link rel="stylesheet" type="text/css" href="style/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="style/bootstrap-responsive.css">
+    <link rel="stylesheet" type="text/css" href="style/eric.css">
 
     <!-- Register your app at http://www.rdio.com/developers/create/ and replace client_id below with yours  -->
     <script src="https://www.rdio.com/api/api.js?client_id=fDFrx0ROVLxiPYvN_q3gmQ"></script>
@@ -25,33 +28,120 @@
             <a href="<%= appUrl %>" target="_blank" class="app btn">View in Rdio app</a>
           </div>          
         </div>
-        <div class="title label"><%= name %></div>
+        <div class="title label"><%= name %></div></br>
         <div class="artist label"><%= artist %></div>
       </span>
     </script>
   </head>
   <body>
-    <div class="header">
-      <div class="section">
-        <img class="icon">
-      </div>
-      <div class="section">
-        <button class="play">play</button>
-        <button class="next">next</button>
-        <button class="prev">previous</button>
-      </div>
-      <div class="section">
-        <div class="track label">Not Playing</div>
-        <div class="album-title label"></div>
-        <div class="artist label"></div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <center>
+            <form class="search">
+              <div class="search_bar">
+                Currently listening to 
+                <input type="text" placeholder="Champaign, IL"/>
+                <button type="submit">TUNES <img id="pin" src="./img/pin.png"></button>
+                <div class="error"></div>
+              </div>
+            </form>
+          </center>
+        </div>
+
+
+        <div id="local">
+          listen local
+        </div>
+
+        <div id="poweredby"><a href="http://www.rdio.com/">Powered by Rdio</a></div>
+        <!--<img id="rdioLogo" src="./img/logo.png">-->
+        <div class="nav-collapse collapse">
+        </div><!--/.nav-collapse -->
       </div>
     </div>
-    <form class="search">
-      Enter an artist or album name: 
-      <input type="text"/>
-      <button type="submit">Search</button>
-      <div class="error"></div>
-    </form>
+
+    <div id="map_bg" style="opacity:0.3; position: fixed; width:100%; margin: 0 auto;">
+      <center>
+        <img src="http://maps.googleapis.com/maps/api/staticmap?center=Champaign, IL&zoom=15&size=640x640&scale=2&key=AIzaSyBh71g21aCO232Jq_6_mL3Z1cftdHBcRSk" />
+      </center>
+    </div>
+
+    <div style="height: 100px;"></div>
+
     <div class="results"></div>
+
+
+
+
+
+
+
+
+
+
+
+      <div class="navbar navbar-inverse navbar-fixed-bottom">
+
+        <div class="navbar-inner">
+
+          <!--<div class="container">-->
+
+
+
+<div class="header">
+
+      <div id="playerControls" class="section">
+        <!--<button class="prev">previous</button>-->
+        <button class="prev"><img id="prev_btn" src="./img/prev.png"></button>
+        <!--<button class="play">play</button>-->
+        <button class="play"><img id="play_btn" src="./img/play.png"></button>
+        <!--<button class="next">next</button>-->
+        <button class="next"><img id="next_btn" src="./img/next.png"></button>
+      </div>
+      
+      <div class="section">
+        <div class="track label">Not Playing</div>
+        <div class="label"> - </div>
+        <div class="artist label"></div></br>
+        <!--<div class="album-title label"></div>-->
+      </div>
+
+      <div class="section" style="float:right;">
+
+        <center><img class="icon" src="./img/noalbum.png"></center>
+      </div>
+      
+</div>
+
+
+
+
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+
+              <span class="icon-bar"></span>
+
+              <span class="icon-bar"></span>
+
+              <span class="icon-bar"></span>
+
+            </button>
+
+            
+            <div class="nav-collapse collapse">
+
+
+            </div><!--/.nav-collapse -->
+
+          <!--</div> /// container -->
+
+        </div>
+
+      </div>
+
+      <div style="height: 205px;"></div>
+
+
   </body>
 </html>
