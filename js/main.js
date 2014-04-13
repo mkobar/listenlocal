@@ -1,5 +1,35 @@
 /*globals R, Main, Modernizr, rdioUtils */
 
+var map = null;
+var geocoder = null;
+
+function initialize() {
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map_canvas"));
+    map.setCenter(new GLatLng(40.11642, -88.243383), 1);
+    map.setUIToDefault();
+    geocoder = new GClientGeocoder();
+  }
+}
+
+function showAddress(address) {
+  if (geocoder) {
+    geocoder.getLatLng(
+      address,
+      function(point) {
+        if (!point) {
+          alert(address + " not found");
+        } else {
+          console.log("bleh");
+          map.setCenter(point, 15);
+          var marker = new GMarker(point, {draggable: false});
+          return marker.getLatLng();
+        }
+      }
+    );
+  }
+}
+
 (function() {
 
   window.Main = {
@@ -57,6 +87,7 @@
           var query = self.$input.val();
           if (query) {
             R.ready(function() { // just in case the API isn't ready yet
+              map.setView(showAddress(query), 15);
               self.search(query);
             });
           }
@@ -105,14 +136,11 @@
           }
         });
         
-        R.ready(function() {
-          if (!R.authenticated()) {
-            R.authenticate();
-          }
-          var userID = R.currentUser.attributes.key;
-          self.getArtistsForLocation("Champaign, IL");
-        });
+        if (!R.authenticated()) {
+          R.authenticate();
+        }
 
+        self.getArtistsForLocation("Champaign, IL");
       });
     }, 
     
@@ -121,7 +149,9 @@
       var self = this;
       this.$results.empty();
       this.tracks = new Array();
-      $.each(tracks, function(index, track) {
+      for (var i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+        R.player.queue.add(track.key);
         track.appUrl = track.shortUrl.replace("http", "rdio");        
         var $el = $(self.albumTemplate(track))
           .appendTo(self.$results);
@@ -147,7 +177,10 @@
           .click(function() {
             R.player.play({source: track.key});
           });
-      });
+      }
+      
+      R.player.play({source: tracks[0].key});
+
     }, 
 
     getTopSongsForArtists: function (data) {
@@ -186,8 +219,9 @@
                 types: "Artist"
               },
               success: function (response) {
+                song_loaded[index].resolve();
                 if (response.result.results[0].key != key) {
-                  self.getTopSongsForArtist(response.result.results[0].key, response.result.results[0], index, song_loaded);
+                  // self.getTopSongsForArtist(response.result.results[0].key, response.result.results[0], index, song_loaded);
                 } else {
                   song_loaded[index].resolve();
                 }
@@ -219,8 +253,6 @@
         }
         var userID = R.currentUser.attributes.key;
         self.getArtistsForLocation(query);
-        //update the googlemaps background
-        $('#gmaps').attr('src','http://maps.googleapis.com/maps/api/staticmap?center='+query+'&zoom=15&size=640x640&scale=2&key=AIzaSyBh71g21aCO232Jq_6_mL3Z1cftdHBcRSk');
       });
     }
 
@@ -238,7 +270,8 @@
     tap: false
 
   }
-  var map = L.map('map', options).setView([51.505, -0.09], 15);
+
+  map = L.map('map', options).setView([40.11642, -88.243383], 15);
   L.dragging = false;
 
   // add an OpenStreetMap tile layer
@@ -246,7 +279,10 @@
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-   Main.init();
+  Main.init();
+
+
+  $("img[src='./img/play.png']").attr('src','./img/pause.png');
  });
   
 })();  

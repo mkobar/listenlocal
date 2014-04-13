@@ -27,7 +27,7 @@
     <script src="javascripts/radidio.js"></script>
 
     <script id="album-template" type="text/template">
-      <div class="album">
+      <div class="album" data-key="<%= key %>">
         <div class="icon" style="background-image: url(<%= icon %>)">
           <div class="buttons">
             <span class="play"><img src="img/playart.png" style="margin: 50px;"> <!--Play Album--> </span>
@@ -38,7 +38,7 @@
         <div class="albumInfo">
           <div class="title label list-label-title"><%= name %></div></br>
           <div class="artist label list-label-other"><%= artist %></div></br>
-          <div class="album label list-label-other"><%= album %></div>
+          <div class="artist label list-label-other"><%= album %></div>
         </div>
       </div>
       </br>
