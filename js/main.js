@@ -78,8 +78,9 @@ initialize();
           event.preventDefault();
           var query = self.$input.val();
           if (query) {
+            codeAddress(query);
             R.ready(function() { // just in case the API isn't ready yet
-              codeAddress(query);
+              
               self.search(query);
             });
           }
@@ -128,9 +129,9 @@ initialize();
           }
         });
         
-        if (!R.authenticated()) {
-          R.authenticate();
-        }
+        // if (!R.authenticated()) {
+        //   R.authenticate();
+        // }
 
         self.getArtistsForLocation("Champaign, IL");
       });
@@ -263,7 +264,6 @@ initialize();
   }
 
   map = L.map('map', options).setView([40.11642, -88.243383], 15);
-  L.dragging = false;
 
   // add an OpenStreetMap tile layer
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
