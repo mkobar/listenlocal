@@ -148,8 +148,8 @@
   };
   
   // ----------
-  $(document).ready(function() {
-    Main.init();
-  });
+//  $(document).ready(function() {
+//    Main.init();
+//  });
   
 })();  

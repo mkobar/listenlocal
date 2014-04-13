@@ -29,10 +29,7 @@ function getTopSongsForArtists (data) {
     i++;
   });
 
-  $.when.apply($, song_loaded).then(function () {
-    console.log("success");
-    console.log(songs);
-  }, function () {
+  $.when.apply($, song_loaded).then(songsAreReady, function () {
     console.log("fail");
   });
   
