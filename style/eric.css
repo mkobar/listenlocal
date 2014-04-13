@@ -5,8 +5,8 @@ body {
 
 #local {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 15px;
+  left: 15px;
   font-size: 32px;
   padding: 10px;
 }
@@ -64,4 +64,33 @@ body {
 
 .prev:hover, .play:hover, .next:hover {
 	opacity: 1.0;
+}
+
+.search_bar {
+  padding-top: 20px;
+  font-size: 20px;
+}
+
+.map, map:hover {
+  cursor: default;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.list-label-title {
+  font-size: 18px;
+  padding: 5px 5px 0px 5px;
+  margin-right: 90%;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.list-label-other {
+  font-size: 16px;
+  padding: 5px 5px 0px 5px;
+  margin-right: 90%;
+  margin-left: 10px;
+  margin-top: 10px;
 }

@@ -39,8 +39,18 @@
   text-align: center;
 }
 
-.album {
+.albumInfo {
+  background-color: white;
+
   display: inline-block;
+  position: absolute;
+  margin: -205px 0 0 100px;
+  width: 600px;
+  height: 200px;
+  opacity: .75;
+}
+
+.album {
   position: relative;
   margin: 0 20px 20px 0;
   width: 200px;
@@ -55,16 +65,16 @@
 }
 
 .album .label {
-  text-align: center;
+  text-align: left;
   height: 1.3em;
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .album .artist {
   /*color: #555;*/
-  color: #FFF;
+  /*color: #FFF;*/
 }
 
 .album .buttons {
