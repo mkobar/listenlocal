@@ -1,16 +1,12 @@
 <?php
 
-class Observer implements SplObserver {
-    function update(SplSubject $client, http\Client\Request $request = NULL, $progress = NULL) {
-        if ($progress->info == "finished") {
+ini_set('display_errors', '0');
 
-        }
-    }
+require_once "/home/destipix/php/HTTP/Request.php";
 
-}
-$location = "";
+$inputLocation = "";
 if (isset($_GET['location'])) {
-	$location = $_GET['location'];
+	$inputLocation = $_GET['location'];
 } else {
 	http_response_code(400);
 	exit(0);
@@ -18,19 +14,15 @@ if (isset($_GET['location'])) {
 
 
 
-$client = new http\Client;
-$client->attach(new Observer);
-$request = new http\Client\Request("GET", "http://developer.echonest.com/api/v4/artist/search?"
+$request = new HTTP_Request("http://developer.echonest.com/api/v4/artist/search?"
 	."api_key=6L1DANBQHJAEEF7NN&format=json&artist_location="
-	.urlencode($location)
+	.urlencode($inputLocation)
 	."&bucket=id:rdio-US");
 
-$client->enqueue($request);
+$request->sendRequest();
 
-$client->send();
-
-if ($client->getResponse($request)->getResponseCode() == 200) {
-	echo $client->getResponse($request)->getBody();
-} else echo $client->getResponse($request)->getResponseCode();
+if ($request->getResponseCode() == 200) {
+	echo $request->getResponseBody();
+} else echo $request->getResponseCode();
 
 ?>
