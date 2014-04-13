@@ -2,7 +2,7 @@
 
 ini_set('display_errors', '0');
 
-require_once "/home/destipix/php/HTTP/Request.php";
+//require_once "/home/destipix/php/HTTP/Request.php";
 
 $inputLocation = "";
 if (isset($_GET['location'])) {

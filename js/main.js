@@ -1,34 +1,26 @@
 /*globals R, Main, Modernizr, rdioUtils */
 
-var map = null;
+// create a map in the "map" div, set the view to a given place and zoom
 var geocoder = null;
 
 function initialize() {
-  if (GBrowserIsCompatible()) {
-    map = new GMap2(document.getElementById("map_canvas"));
-    map.setCenter(new GLatLng(40.11642, -88.243383), 1);
-    map.setUIToDefault();
-    geocoder = new GClientGeocoder();
-  }
+  geocoder = new google.maps.Geocoder();
+  
 }
 
-function showAddress(address) {
-  if (geocoder) {
-    geocoder.getLatLng(
-      address,
-      function(point) {
-        if (!point) {
-          alert(address + " not found");
-        } else {
-          console.log("bleh");
-          map.setCenter(point, 15);
-          var marker = new GMarker(point, {draggable: false});
-          return marker.getLatLng();
-        }
-      }
-    );
-  }
+function codeAddress(address) {
+  var address = address;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    map.setView([results[0].geometry.location.k, results[0].geometry.location.A], 15);
+    if (status == google.maps.GeocoderStatus.OK) {
+      results[0].geometry.location;
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
 }
+
+initialize();
 
 (function() {
 
@@ -87,7 +79,7 @@ function showAddress(address) {
           var query = self.$input.val();
           if (query) {
             R.ready(function() { // just in case the API isn't ready yet
-              map.setView(showAddress(query), 15);
+              codeAddress(query);
               self.search(query);
             });
           }
@@ -260,7 +252,6 @@ function showAddress(address) {
   
   // ----------
  $(document).ready(function() {
-  // create a map in the "map" div, set the view to a given place and zoom
   var options = {
     dragging: false,
     touchZoom: false,
