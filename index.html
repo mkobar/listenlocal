@@ -31,15 +31,24 @@
       <div class="album" data-key="<%= key %>">
         <div class="icon" style="background-image: url(<%= icon %>)">
           <div class="buttons">
-            <span class="play"><img src="img/playart.png" style="margin: 50px;"> <!--Play Album--> </span>
+            <span class="list-play"><img src="img/playart.png" style="margin: 50px;"> <!--Play Album--> 
+            Playing
+            </span>
+            
             <!--<a href="http://www.rdio.com<%= url %>" target="_blank" class="site btn">View on Rdio.com</a>
             <a href="<%= appUrl %>" target="_blank" class="app btn">View in Rdio app</a>-->
           </div>          
         </div>
         <div class="albumInfo">
-          <div class="title label list-label-title"><%= name %></div></br>
-          <div class="artist label list-label-other"><%= artist %></div></br>
-          <div class="artist label list-label-other"><%= album %></div>
+          <div class="title label list-label-title"><a href="http://rdio.com<%= url %>" target="_blank">
+            <%= name %></a>
+          </div></br>
+          <div class="artist label list-label-other"><a href="http://rdio.com<%= artistUrl %>" target="_blank">
+            <%= artist %></a>
+          </div></br>
+          <div class="artist label list-label-other"><a href="http://rdio.com<%= albumUrl %>" target="_blank">
+            <%= album %></a>
+          </div>
         </div>
       </div>
       </br>
@@ -54,7 +63,7 @@
             <form class="search">
               <div class="search_bar">
                 Find artists from&nbsp;
-                <input type="text" value="Champaign, IL" placeholder="Champaign, IL"/>
+                <input type="text" value="Detroit, MI" placeholder="Champaign, IL"/>
                 <button class="btn btn-danger" style="margin-top: -10px;" type="submit">Go</button>
                 <div class="error"></div>
               </div>
@@ -67,6 +76,18 @@
           listen local
         </div>
 
+
+        <div class="current-user" style="">
+
+        </div>
+        <div class="current-user-name" style="">
+          
+        </div>
+        <button class="btn btn-success login-button">
+          Login to Rdio
+        </button>
+
+
         <div id="poweredby"><a href="http://www.rdio.com/">Powered by Rdio</a></div>
         <!--<img id="rdioLogo" src="./img/logo.png">-->
         <div class="nav-collapse collapse">
@@ -74,14 +95,7 @@
       </div>
     </div>
 
-    <!--<div id="map_bg" style="opacity:0.5; position: fixed; width:130%; margin: 0 auto; margin-left: -15%;">
-      <center>
-        <img id="gmaps" src="http://maps.googleapis.com/maps/api/staticmap?center=Champaign, IL&zoom=15&size=640x640&scale=2&key=AIzaSyBh71g21aCO232Jq_6_mL3Z1cftdHBcRSk" />
-
-      </center>
-    </div>-->
-
-    <div id="map" class="map" style="position:fixed; top: 0; height: 100%; width: 100%; opacity: 0.7;"></div>
+    <div id="map" class="map"></div>
 
     <div style="height: 100px;"></div>
 

@@ -72,14 +72,7 @@
   /*overflow: hidden;*/
 }
 
-.album .artist {
-  /*color: #555;*/
-  /*color: #FFF;*/
-}
-
 .album .buttons {
-  display: none;
-  position: absolute;
   z-index: 10; 
   text-align: center; 
 }

@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
 	background-color: #46494d;
 }
@@ -57,12 +62,12 @@ body {
 	opacity: 1.0;
 }
 */
-.prev, .play, .next {
-	opacity: 0.5;
+.prev, .play, .next, .list-play {
+	opacity: 0.7;
 }
 
 
-.prev:hover, .play:hover, .next:hover {
+.prev:hover, .play:hover, .next:hover, .list-play:hover {
 	opacity: 1.0;
 }
 
@@ -72,6 +77,11 @@ body {
 }
 
 .map, map:hover {
+  position:fixed; 
+  top: 0; 
+  height: 100%; 
+  width: 100%; 
+  opacity: 0.9;
   cursor: default;
 }
 
@@ -93,4 +103,57 @@ body {
   margin-right: 90%;
   margin-left: 10px;
   margin-top: 10px;
+}
+
+.label > a {
+  color: #000;
+}
+
+.label > a:hover {
+  color: #DDD;
+}
+
+.label > a, .label > a:hover  {
+  text-decoration: none;
+}
+
+.list-play {
+  line-height: 200px;
+  font-size: 24px;
+
+  -webkit-filter: drop-shadow(0px 0px 10px rgba(0,0,0,1.0));
+  filter: drop-shadow(0px 0px 10px rgba(0,0,0,1.0));
+}
+
+.login-button {
+  position: fixed;
+  right: 0px; 
+  top: 25px;
+  margin-right: 7px;
+}
+
+.current-user {
+  position: fixed; 
+  top: 0px; 
+  right: 0px; 
+  margin-top: 25px;
+  margin-right: 7px;
+  height: 50px; 
+  width: 50px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+}
+
+.current-user-name {
+  color: #909397;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+  text-decoration: none;
+  font-size: 11px;
+  position: fixed; 
+  text-align: right;
+  top: 0px; 
+  right: 0px; 
+  margin-top: 77px;
+  margin-right: 7px;
 }

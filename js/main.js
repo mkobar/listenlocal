@@ -1,7 +1,5 @@
-/*globals R, Main, Modernizr, rdioUtils */
-
-// create a map in the "map" div, set the view to a given place and zoom
 var geocoder = null;
+var mapZoom = 15;
 
 function initialize() {
   geocoder = new google.maps.Geocoder();
@@ -11,7 +9,7 @@ function initialize() {
 function codeAddress(address) {
   var address = address;
   geocoder.geocode( { 'address': address}, function(results, status) {
-    map.setView([results[0].geometry.location.k, results[0].geometry.location.A], 15);
+    map.setView([results[0].geometry.location.k, results[0].geometry.location.A], mapZoom);
     if (status == google.maps.GeocoderStatus.OK) {
       results[0].geometry.location;
     } else {
@@ -22,10 +20,29 @@ function codeAddress(address) {
 
 initialize();
 
+R.ready(function () {
+  R.logger.verbosity('all');
+});
+
+// http://stackoverflow.com/a/19498477/2390856
+$(function () {
+  var focusedElement;
+  $(document).on('focus', 'input', function () {
+      if (focusedElement == this) return; //already focused, return so user can now place cursor at specific point in input.
+      focusedElement = this;
+      setTimeout(function () { focusedElement.select(); }, 50); //select all text in any field on focus for easy re-entry. Delay sightly to allow focus to "stick" before selecting.
+  });
+  $(document).on('blur', 'input', function() {
+    focusedElement = null;
+  });
+});
+
 (function() {
 
   window.Main = {
     getArtistsForLocation: function (location) {
+      this.originalArtistIndex = new Array();
+      this.tracks = new Array();
       var self = this;
       var url = "getArtistsForLocation.php?location=" + encodeURIComponent(location);
       $.get(url, function (data) {
@@ -33,7 +50,10 @@ initialize();
         var artists = data_obj.response.artists;
         var keys_list = new Array();
         $.each(artists, function (index, obj) {
-          keys_list.push(obj.foreign_ids[0].foreign_id.replace("rdio-US:artist:", ""));
+          console.log(obj.name);
+          var key = obj.foreign_ids[0].foreign_id.replace("rdio-US:artist:", "");
+          self.originalArtistIndex[key] = index;
+          keys_list.push(key);
         });
         keys_list = keys_list.join();
         R.request({
@@ -57,7 +77,6 @@ initialize();
       
       this.$input = $(".search input");
       this.$results = $(".results");
-      this.tracks = new Array();
 
       var rawTemplate = $.trim($("#album-template").text());
       this.albumTemplate = _.template(rawTemplate);
@@ -80,7 +99,6 @@ initialize();
           if (query) {
             codeAddress(query);
             R.ready(function() { // just in case the API isn't ready yet
-              
               self.search(query);
             });
           }
@@ -91,33 +109,87 @@ initialize();
       }
 
       R.ready(function() {
+        R.player.queue.on("add", self.keyAdded);
         var $play = $(".header .play")
           .click(function() {
-            R.player.togglePause();
+            if (R.player.playingTrack() == null) {
+              if (self.queue.length != 0) {
+                self.currentTrackIndex = 0;
+                R.player.play({source: self.queue[self.currentTrackIndex]});
+              }
+            } else { 
+              R.player.togglePause();
+            }
           });
         
         $(".header .next")
           .click(function() {
-            R.player.next();
+            // R.player.next();
+            if (self.currentTrackIndex < self.queue.length - 1 && self.queue.length > 0) {
+              if (self.currentTrackIndex != -1) {
+                // self.previousTrackIndex = self.currentTrackIndex;
+                self.currentTrackIndex++;
+                R.player.play({source: self.queue[self.currentTrackIndex]});
+              } else {
+                R.player.play({source: self.queue[0]});
+              }
+            }
           });
         
         $(".header .prev")
           .click(function() {
-            R.player.previous();
+            if (R.player.position() > 0 || self.currentTrackIndex == 0) {
+              R.player.previous();
+            } else {
+              // self.previousTrackIndex = self.currentTrackIndex;
+              self.currentTrackIndex--;
+              R.player.play({source: self.queue[self.currentTrackIndex]});
+            }
+          });
+
+        $(".login-button")
+          .click(function() {
+            if (!R.authenticated()) {
+              R.authenticate(function () {
+                $(".current-user").css("background-image", "url(" + R.currentUser.get("icon") + ")");
+                $(".current-user-name").text("Logged in as " 
+                  + R.currentUser.get("firstName") + " " 
+                  + R.currentUser.get("lastName"));
+              });
+            } else {
+              $(".current-user").css("background-image", "url(" + R.currentUser.get("icon") + ")");
+              $(".current-user-name").text("Logged in as " 
+                + R.currentUser.get("firstName") + " " 
+                + R.currentUser.get("lastName"));
+            }
+            $(".login-button").css("display", "none");
           });
         
-        R.player.on("change:playingTrack", function(track) {
+        R.player.on("change:playingTrack", function (track) {
           $(".header .icon").attr("src", track.get("icon"));
           $(".header .track").text(track.get("name"));
           $(".header .dash").text(" - ");
-          //$(".header .album-title").text(track.get("album"));
           $(".header .artist").text(track.get("artist"));
-          //$(".header .track").text("Track: " + track.get("name"));
-          //$(".header .album-title").text("Album: " + track.get("album"));
-          //$(".header .artist").text("Artist: " + track.get("artist"));
+          // if (self.previousTrackIndex != -1) {
+            // prevEl = $(".results").find("[data-key=" + self.queue[self.previousTrackIndex] + "]");
+          $(".results").find(".list-play > img").css({"display": "block"});
+          $(".results").find(".list-play").css({"opacity": "0.7"});
+          el = $(".results").find("[data-key=" + track.get("key") + "]");
+          $(el).find(".list-play > img").css({"display": "none"});
+          $(el).find(".list-play").css({"opacity": "1.0"});
+          $('html,body').animate({scrollTop: el.offset().top - 100}, 'slow');
         });
         
-        R.player.on("change:playState", function(state) {
+        R.player.on("change:position", function (position) {
+          if (position == R.player.playingTrack().get("duration") - 1
+            && self.queue.length > self.currentTrackIndex + 1) {
+              // self.previousTrackIndex = self.currentTrackIndex;
+              self.currentTrackIndex++;
+              R.player.play({source: self.queue[self.currentTrackIndex]});
+          }
+        });
+
+        R.player.on("change:playState", function (state) {
           if (state === R.player.PLAYSTATE_PLAYING || state === R.player.PLAYSTATE_BUFFERING) {
             //$play.text("pause");
             //$play.html("<img src='./img/pause.png'>");
@@ -128,26 +200,33 @@ initialize();
             $("img[src='./img/pause.png']").attr('src','./img/play.png');
           }
         });
-        
-        // if (!R.authenticated()) {
-        //   R.authenticate();
-        // }
+        if (R.authenticated()) {
+          $(".login-button").css("display", "none");
 
-        self.getArtistsForLocation("Champaign, IL");
+          $(".current-user").css("background-image", "url(" + R.currentUser.get("icon") + ")");
+          $(".current-user-name").text("Logged in as " 
+            + R.currentUser.get("firstName") + " " 
+            + R.currentUser.get("lastName"));
+        }
+        self.getArtistsForLocation("Detroit, MI");
       });
     }, 
     
     // ----------
     showResults: function(tracks) {
+      window.scrollTo(0, 0);
       var self = this;
+      this.queue = new Array();
+      this.currentTrackIndex = -1;
+      this.previousTrackIndex = -1;
       this.$results.empty();
-      this.tracks = new Array();
-      for (var i = 0; i < tracks.length; i++) {
-        var track = tracks[i];
-        R.player.queue.add(track.key);
+      //R.player.queue.clear();
+      $.each(tracks, function (index, track) {
         track.appUrl = track.shortUrl.replace("http", "rdio");        
         var $el = $(self.albumTemplate(track))
           .appendTo(self.$results);
+
+        $el.attr("data-key", track.key);
         
         var $cover = $el.find(".icon");
         if (Modernizr.touch) {  
@@ -166,24 +245,34 @@ initialize();
           });
         }
         
-        $el.find(".play")
-          .click(function() {
-            R.player.play({source: track.key});
+        $el.find(".list-play")
+          .click(function (e) {
+            // self.previousTrackIndex = self.currentTrackIndex;
+            self.currentTrackIndex = index;
+            if (self.queue.length > index) {
+              R.player.play({source: self.queue[self.currentTrackIndex]});
+            }
           });
+      });
+
+      this.$results = $(".results");
+      this.$results.children(".album").each(function (index, child) {
+        console.log($(child).find(".artist")[0].innerText);
+        self.queue.push($(child).attr("data-key"));
+      });
+      if (this.queue.length != 0) {
+        // R.player.play({source: this.queue[0].key});
       }
-      
-      R.player.play({source: tracks[0].key});
 
     }, 
 
     getTopSongsForArtists: function (data) {
       var keys_list = new Array();
       var song_loaded = new Array();
-      var i = 0;
       var self = this;
       $.each(data.result, function (key, obj) {
-        self.getTopSongsForArtist(key, obj, i, song_loaded);
-        i++;
+        console.log(obj.name);
+        self.getTopSongsForArtist(key, obj, self.originalArtistIndex[key], song_loaded);
       });
 
       $.when.apply($, song_loaded).then(function () {
@@ -209,12 +298,13 @@ initialize();
               method: "search",
               content: {
                 query: obj.name,
-                types: "Artist"
+                types: "Artist",
+                limit: 1
               },
               success: function (response) {
-                song_loaded[index].resolve();
+                // song_loaded[index].resolve();
                 if (response.result.results[0].key != key) {
-                  // self.getTopSongsForArtist(response.result.results[0].key, response.result.results[0], index, song_loaded);
+                  self.getTopSongsForArtist(response.result.results[0].key, response.result.results[0], index, song_loaded);
                 } else {
                   song_loaded[index].resolve();
                 }
@@ -224,7 +314,7 @@ initialize();
               }
             });
           } else {
-            self.tracks.push(response.result[0]);
+            self.tracks[index] = response.result[0];
             console.log("resolved promise " + index);
             song_loaded[index].resolve();
           }
@@ -241,39 +331,35 @@ initialize();
       query = query.toLowerCase().trim();
       document.title = "music from " + query;
       R.ready(function() {
-        if (!R.authenticated()) {
-          R.authenticate();
-        }
-        var userID = R.currentUser.attributes.key;
         self.getArtistsForLocation(query);
       });
     }
-
   };
   
   // ----------
- $(document).ready(function() {
-  var options = {
-    dragging: false,
-    touchZoom: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false,
-    tap: false
+  $(document).ready(function() {
+    
+    var options = {
+      dragging: false,
+      touchZoom: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      boxZoom: false,
+      tap: false
 
-  }
+    }
 
-  map = L.map('map', options).setView([40.11642, -88.243383], 15);
+    map = L.map('map', options).setView([40.11642, -88.243383], mapZoom);
 
-  // add an OpenStreetMap tile layer
-  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
+    // add an OpenStreetMap tile layer
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-  Main.init();
+    Main.init();
 
+    // $("img[src='./img/play.png']").attr('src','./img/pause.png');
+  });
 
-  $("img[src='./img/play.png']").attr('src','./img/pause.png');
- });
   
 })();  
