@@ -208,6 +208,8 @@ $(function () {
             + R.currentUser.get("firstName") + " " 
             + R.currentUser.get("lastName"));
         }
+
+        codeAddress("Detroit, MI");
         self.getArtistsForLocation("Detroit, MI");
       });
     }, 
@@ -349,7 +351,7 @@ $(function () {
 
     }
 
-    map = L.map('map', options).setView([40.11642, -88.243383], mapZoom);
+    map = L.map('map', options);
 
     // add an OpenStreetMap tile layer
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
