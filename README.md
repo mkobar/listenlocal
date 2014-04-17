@@ -1,5 +1,8 @@
-# About
+# listen local
+music from where you at.
 
-A simple example app for the new Rdio JavaScript API. 
+Created at HackIllinois 2014 by Eric Austin and Jacob Howcroft.
 
-http://iangilman.com/rdio/simple-player/
+
+you can use it here:
+http://www.destipix.com/listenlocal/index.html
