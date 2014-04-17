@@ -172,10 +172,15 @@ $(function () {
           $(".header .artist").text(track.get("artist"));
           // if (self.previousTrackIndex != -1) {
             // prevEl = $(".results").find("[data-key=" + self.queue[self.previousTrackIndex] + "]");
-          $(".results").find(".list-play > img").css({"display": "block"});
+          $(".results").find(".list-play").html('<img src="img/playart.png" style="margin: 50px;">');
           $(".results").find(".list-play").css({"opacity": "0.7"});
+          $(".results").find(".list-play").hover(function (e) {
+            $(e.target).css({"opacity": "1.0"});
+          }, function (e) {
+            $(e.target).css({"opacity": "0.7"});
+          });
           el = $(".results").find("[data-key=" + track.get("key") + "]");
-          $(el).find(".list-play > img").css({"display": "none"});
+          $(el).find(".list-play").html("Playing");
           $(el).find(".list-play").css({"opacity": "1.0"});
           $('html,body').animate({scrollTop: el.offset().top - 100}, 'slow');
         });
