@@ -5,27 +5,20 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css">
+    <link rel="stylesheet" type="text/css" href="style/leaflet.css">
     <link rel="stylesheet" type="text/css" href="lib/normalize.css">
     <link rel="stylesheet" type="text/css" href="utils/rdio-utils.css">
     <link rel="stylesheet" type="text/css" href="style/main.css">
     <link rel="stylesheet" type="text/css" href="style/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="style/bootstrap-responsive.css">
-    <link rel="stylesheet" type="text/css" href="style/eric.css">
-    <!-- Register your app at http://www.rdio.com/developers/create/ and replace client_id below with yours  -->
     <script src="lib/jquery-1.9.1.min.js"></script>
+    <script src="lib/leaflet.js"></script>
     <script src="https://www.rdio.com/api/api.js?client_id=fDFrx0ROVLxiPYvN_q3gmQ"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-
-    
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
-    
     <script src="lib/modernizr.touch.js"></script>
     <script src="lib/underscore-1.4.4.min.js"></script>
-    <script src="utils/rdio-utils.js"></script>
+    <script src="utils/rdio-utils.min.js"></script>
     <script src="js/main.js"></script>
-
-    <script src="js/radidio.js"></script>
 
     <script id="album-template" type="text/template">
       <div class="album" data-key="<%= key %>">
@@ -101,23 +94,9 @@
 
     <div class="results" style="width: 70%; margin-left: 15%;"></div>
 
-
-
-
-
-
-
-
-
-
-
       <div class="navbar navbar-inverse navbar-fixed-bottom">
 
         <div class="navbar-inner">
-
-          <!--<div class="container">-->
-
-
 
 <div class="header">
 
@@ -130,7 +109,6 @@
         <button class="next"><img id="next_btn" src="./img/next.png"></button>
       </div>
 
-      
       <div class="section" style="text-align: center; margin: auto 0; width: 65%; float: left;">
         <!--
         <div class="track label">Not Playing</div>
@@ -148,9 +126,6 @@
       </div>
       
 </div>
-
-
-
 
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 
@@ -175,7 +150,6 @@
       </div>
 
       <div style="height: 205px;"></div>
-
 
   </body>
 </html>
