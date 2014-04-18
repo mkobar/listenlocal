@@ -227,9 +227,15 @@ $(function () {
       this.currentTrackIndex = -1;
       this.previousTrackIndex = -1;
       this.$results.empty();
-      //R.player.queue.clear();
+      var error_tracks = 0;
       $.each(tracks, function (index, track) {
-        track.appUrl = track.shortUrl.replace("http", "rdio");        
+        if (!track) {
+          error_tracks++;
+          return;
+        }
+        index -= error_tracks;
+        
+        track.appUrl = track.shortUrl.replace("http", "rdio");      
         var $el = $(self.albumTemplate(track))
           .appendTo(self.$results);
 
@@ -297,7 +303,7 @@ $(function () {
         method: "getTracksForArtist",
         content: {
           artist: key,
-          limit: 1
+          count: 1
         },
         success: function (response) {
           if (response.result.length == 0) {
