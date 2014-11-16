@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>music from where you at</title>
+    <title>listen local</title>
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="style/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="style/bootstrap-responsive.css">
     <link rel="stylesheet" type="text/css" href="style/eric.css">
-    <script src="lib/jquery-1.9.1.min.js"></script>
+    <script src="lib/jquery-1.11.1.min.js"></script>
     <script src="lib/leaflet.js"></script>
     <script src="https://www.rdio.com/api/api.js?client_id=fDFrx0ROVLxiPYvN_q3gmQ"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
@@ -32,14 +32,14 @@
           </div>          
         </div>
         <div class="albumInfo">
-          <div class="title label list-label-title"><a href="http://rdio.com<%= url %>" target="_blank">
-            <%= name %></a>
+          <div class="title label list-label-title">
+            <a href="http://rdio.com<%= url %>" target="_blank"><%= name %></a>
           </div></br>
-          <div class="artist label list-label-other"><a href="http://rdio.com<%= artistUrl %>" target="_blank">
-            <%= artist %></a>
+          <div class="artist label list-label-other">
+            <a href="http://rdio.com<%= artistUrl %>" target="_blank"><%= artist %></a>
           </div></br>
-          <div class="artist label list-label-other"><a href="http://rdio.com<%= albumUrl %>" target="_blank">
-            <%= album %></a>
+          <div class="artist label list-label-other">
+            <a href="http://rdio.com<%= albumUrl %>" target="_blank"><%= album %></a>
           </div>
         </div>
       </div>
@@ -64,20 +64,14 @@
         </div>
 
 
-        <div id="local">
-          listen local
-        </div>
+        <div id="local">listen local</div>
 
+        <div id="about"><a href="#" onclick="AboutListenLocal();">About</a></div>
 
-        <div class="current-user" style="">
+        <div class="current-user" style=""><!--User Photo--></div>
+        <div class="current-user-name" style=""><!--User Name--></div>
 
-        </div>
-        <div class="current-user-name" style="">
-          
-        </div>
-        <button class="btn btn-success login-button">
-          Login to Rdio
-        </button>
+        <button class="btn btn-success login-button">Login to Rdio</button>
 
 
         <div id="poweredby"><a href="http://www.rdio.com/">Powered by Rdio</a></div>
@@ -100,12 +94,9 @@
 <div class="header">
 
       <div id="playerControls" class="section">
-        <!--<button class="prev">previous</button>-->
-        <button class="prev"><img id="prev_btn" src="./img/prev.png"></button>
-        <!--<button class="play">play</button>-->
-        <button class="play"><img id="play_btn" src="./img/play.png"></button>
-        <!--<button class="next">next</button>-->
-        <button class="next"><img id="next_btn" src="./img/next.png"></button>
+        <button class="prev"><img id="prev_btn" src="img/prev.png"></button>
+        <button class="play"><img id="play_btn" src="img/play.png"></button>
+        <button class="next"><img id="next_btn" src="img/next.png"></button>
       </div>
 
       <div class="section" style="text-align: center; margin: auto 0; width: 65%; float: left;">

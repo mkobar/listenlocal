@@ -16,6 +16,20 @@ body {
   padding: 10px;
 }
 
+#about {
+  position: fixed;
+  top: 50px;
+  left: 15px;
+  font-size:13px;
+}
+
+#about {
+  position: fixed;
+  top: 45px;
+  left: 15px;
+  font-size:13px;
+}
+
 #playerControls {
 	left: 0;
 	padding-left: 20px;
@@ -32,12 +46,12 @@ body {
   right: 0px;
 }
 
-#poweredby a {
+#poweredby a, #about a {
   display: block;
   font-size: 11px;
   line-height: 24px;
   padding: 0 10px;
-  background: #32353a;
+  /*background: #32353a;*/
   color: #909397;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
   text-decoration: none;
@@ -49,7 +63,7 @@ body {
   */
 }
 
-#poweredby a:hover {
+#poweredby a:hover, #about a:hover {
   color: #fff;
 }
 /*

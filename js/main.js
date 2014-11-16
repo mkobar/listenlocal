@@ -2,14 +2,26 @@ var geocoder = null;
 var mapZoom = 15;
 
 function initialize() {
+  console.log("initialize()");
   geocoder = new google.maps.Geocoder();
   
 }
 
+function AboutListenLocal() {
+  alert("hello!!!!");
+}
+
 function codeAddress(address) {
+  console.log("codeAddress()");
   var address = address;
+  console.log("address : "+address);
   geocoder.geocode( { 'address': address}, function(results, status) {
-    map.setView([results[0].geometry.location.k, results[0].geometry.location.A], mapZoom);
+    //console.log(results[0].geometry.location.k);
+    //console.log(results[0].geometry.location.A);
+    //console.log(results[0].geometry.location.lat());
+    //console.log(results[0].geometry.location.lng());
+    //map.setView([results[0].geometry.location.k, results[0].geometry.location.A], mapZoom);
+    map.setView([results[0].geometry.location.lat(), results[0].geometry.location.lng()], mapZoom);
     if (status == google.maps.GeocoderStatus.OK) {
       results[0].geometry.location;
     } else {
@@ -50,7 +62,7 @@ $(function () {
         var artists = data_obj.response.artists;
         var keys_list = new Array();
         $.each(artists, function (index, obj) {
-          console.log(obj.name);
+          //console.log(obj.name);
           var key = obj.foreign_ids[0].foreign_id.replace("rdio-US:artist:", "");
           self.originalArtistIndex[key] = index;
           keys_list.push(key);
@@ -270,7 +282,7 @@ $(function () {
 
       this.$results = $(".results");
       this.$results.children(".album").each(function (index, child) {
-        console.log($(child).find(".artist")[0].innerText);
+        //console.log($(child).find(".artist")[0].innerText);
         self.queue.push($(child).attr("data-key"));
       });
       if (this.queue.length != 0) {
@@ -284,12 +296,11 @@ $(function () {
       var song_loaded = new Array();
       var self = this;
       $.each(data.result, function (key, obj) {
-        console.log(obj.name);
+        //console.log(obj.name);
         self.getTopSongsForArtist(key, obj, self.originalArtistIndex[key], song_loaded);
       });
 
       $.when.apply($, song_loaded).then(function () {
-        console.log("fellasdad");
         self.showResults(self.tracks);
       }, function () {
         console.log("fail");
@@ -328,7 +339,7 @@ $(function () {
             });
           } else {
             self.tracks[index] = response.result[0];
-            console.log("resolved promise " + index);
+            //console.log("resolved promise " + index);
             song_loaded[index].resolve();
           }
         },
