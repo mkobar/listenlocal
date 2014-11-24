@@ -1,14 +1,18 @@
-html, body {
+html,
+body
+{
   max-width: 100%;
   overflow-x: hidden;
 }
 
-body {
-	background-color: #46494d;
+body
+{
+	background-color: #46494D;
 }
 
 
-#local {
+#local
+{
   position: fixed;
   top: 15px;
   left: 15px;
@@ -16,37 +20,30 @@ body {
   padding: 10px;
 }
 
-#about {
-  position: fixed;
-  top: 50px;
-  left: 15px;
-  font-size:13px;
-}
-
-#about {
+#about
+{
   position: fixed;
   top: 45px;
   left: 15px;
-  font-size:13px;
+  font-size: 13px;
 }
 
-#playerControls {
+#playerControls
+{
 	left: 0;
 	padding-left: 20px;
 }
 
-#poweredby {
+#poweredby
+{
   position: fixed;
-  /*
-  top: 45px;
-  right: 30px;
-  */
-
   top: 0px;
   right: 0px;
 }
 
-#poweredby a, #about a {
+#poweredby a,
+#about a
+{
   display: block;
   font-size: 11px;
   line-height: 24px;
@@ -63,35 +60,39 @@ body {
   */
 }
 
-#poweredby a:hover, #about a:hover {
-  color: #fff;
-}
-/*
-#prev_btn, #play_btn, #next_btn {
-	opacity: 0.5;
+#poweredby a:hover,
+#about a:hover
+{
+  color: #FFFFFF;
 }
 
-
-#prev_btn:hover, #play_btn:hover, #next_btn:hover {
-	opacity: 1.0;
-}
-*/
-.prev, .play, .next, .list-play {
+.prev,
+.play,
+.next,
+.list-play
+{
 	opacity: 0.7;
 }
 
 
-.prev:hover, .play:hover, .next:hover, .list-play:hover {
+.prev:hover,
+.play:hover,
+.next:hover,
+.list-play:hover
+{
 	opacity: 1.0;
 }
 
-.search_bar {
+.search_bar
+{
   padding-top: 20px;
   font-size: 20px;
 }
 
-.map, map:hover {
-  position:fixed; 
+.map,
+map:hover
+{
+  position: fixed; 
   top: 0; 
   height: 100%; 
   width: 100%; 
@@ -99,11 +100,13 @@ body {
   cursor: default;
 }
 
-.icon {
+.icon
+{
   cursor: pointer;
 }
 
-.list-label-title {
+.list-label-title
+{
   font-size: 18px;
   padding: 5px 5px 0px 5px;
   margin-right: 90%;
@@ -111,7 +114,8 @@ body {
   margin-top: 10px;
 }
 
-.list-label-other {
+.list-label-other
+{
   font-size: 16px;
   padding: 5px 5px 0px 5px;
   margin-right: 90%;
@@ -119,34 +123,40 @@ body {
   margin-top: 10px;
 }
 
-.label > a {
-  color: #000;
+.label > a
+{
+  color: #000000;
 }
 
-.label > a:hover {
-  color: #DDD;
+.label > a:hover
+{
+  color: #DDDDDD;
 }
 
-.label > a, .label > a:hover  {
+.label > a,
+.label > a:hover 
+{
   text-decoration: none;
 }
 
-.list-play {
+.list-play
+{
   line-height: 200px;
   font-size: 24px;
-
   -webkit-filter: drop-shadow(0px 0px 10px rgba(0,0,0,1.0));
   filter: drop-shadow(0px 0px 10px rgba(0,0,0,1.0));
 }
 
-.login-button {
+.login-button
+{
   position: fixed;
   right: 0px; 
   top: 25px;
   margin-right: 7px;
 }
 
-.current-user {
+.current-user
+{
   position: fixed; 
   top: 0px; 
   right: 0px; 
@@ -159,7 +169,8 @@ body {
   -moz-border-radius: 50px;
 }
 
-.current-user-name {
+.current-user-name
+{
   color: #909397;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
   text-decoration: none;

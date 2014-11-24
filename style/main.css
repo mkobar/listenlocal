@@ -1,70 +1,78 @@
-/* --------- */
-.header {
+
+.header
+{
   overflow: hidden;
   padding: 10px;
   /*background: #ddd;*/
 }
 
-.header .section {
+.header .section
+{
   float: left;
   margin: 0 20px 0 0;
 }
 
-.section .icon {
+.section .icon
+{
   width: 50px;
   height: 50px;
   margin: 0 0 4px 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.header button {
+.header button
+{
   /*display: block;*/
   /*margin: 0 0 10px 0;*/
   background-color: transparent;
   border: 0;
 }
 
-.header .label {
+.header .label
+{
   margin: 0 0 10px 0;
 }
 
-/* --------- */
-.search {
+.search
+{
   padding: 10px;
 }
 
-/* --------- */
-.results {
+.results
+{
   padding: 10px;
   text-align: center;
 }
 
-.albumInfo {
+.albumInfo
+{
   background-color: white;
-
   display: inline-block;
   position: absolute;
-  margin: -205px 0 0 100px;
+  margin: -206px 0 0 102px;
   width: 600px;
-  height: 200px;
+  height: 202px;
   opacity: .75;
 }
 
-.album {
+.album
+{
   position: relative;
   margin: 0 20px 20px 0;
   width: 200px;
   height: 240px;
 }
 
-.album .icon {
+.album .icon
+{
   width: 200px;
   height: 200px;
   margin: 0 0 4px 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.album .label {
+.album .label
+{
   text-align: left;
   height: 1.3em;
   white-space: nowrap;
@@ -72,12 +80,14 @@
   /*overflow: hidden;*/
 }
 
-.album .buttons {
+.album .buttons
+{
   z-index: 10; 
   text-align: center; 
 }
 
-.album.hover .buttons {
+.album.hover .buttons
+{
   display: block;
 }
 /*
