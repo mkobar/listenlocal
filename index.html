@@ -1,145 +1,152 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>listen local</title>
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>listen local</title>
+  <link rel="stylesheet" type="text/css" href="css/leaflet.css">
+  <link rel="stylesheet" type="text/css" href="lib/normalize.css">
+  <link rel="stylesheet" type="text/css" href="utils/rdio-utils.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css">
+  <link rel="stylesheet" type="text/css" href="css/eric.css">
+  <script src="lib/jquery-1.11.1.min.js"></script>
+  <script src="lib/leaflet.js"></script>
+  <script src="https://www.rdio.com/api/api.js?client_id=fDFrx0ROVLxiPYvN_q3gmQ"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <script src="lib/modernizr.touch.js"></script>
+  <script src="lib/underscore-1.4.4.min.js"></script>
+  <script src="utils/rdio-utils.min.js"></script>
+  <script src="js/main.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="style/leaflet.css">
-    <link rel="stylesheet" type="text/css" href="lib/normalize.css">
-    <link rel="stylesheet" type="text/css" href="utils/rdio-utils.css">
-    <link rel="stylesheet" type="text/css" href="style/main.css">
-    <link rel="stylesheet" type="text/css" href="style/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="style/bootstrap-responsive.css">
-    <link rel="stylesheet" type="text/css" href="style/eric.css">
-    <script src="lib/jquery-1.11.1.min.js"></script>
-    <script src="lib/leaflet.js"></script>
-    <script src="https://www.rdio.com/api/api.js?client_id=fDFrx0ROVLxiPYvN_q3gmQ"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="lib/modernizr.touch.js"></script>
-    <script src="lib/underscore-1.4.4.min.js"></script>
-    <script src="utils/rdio-utils.min.js"></script>
-    <script src="js/main.js"></script>
-
-    <script id="album-template" type="text/template">
-      <div class="album" data-key="<%= key %>">
-        <div class="icon" style="background-image: url(<%= icon %>)">
-          <div class="buttons">
-            <span class="list-play"><img src="img/playart.png" style="margin: 50px;"></span>
+  <script id="album-template" type="text/template">
+    <div class="album" data-key="<%= key %>">
+      <div class="icon" style="background-image: url(<%= icon %>)">
+        <div class="buttons">
+          <span class="list-play"><img src="img/playart.png" style="margin: 50px;"></span>
             
-            <!--<a href="http://www.rdio.com<%= url %>" target="_blank" class="site btn">View on Rdio.com</a>
-            <a href="<%= appUrl %>" target="_blank" class="app btn">View in Rdio app</a>-->
-          </div>          
-        </div>
-        <div class="albumInfo">
-          <div class="title label list-label-title">
-            <a href="http://rdio.com<%= url %>" target="_blank"><%= name %></a>
-          </div></br>
-          <div class="artist label list-label-other">
-            <a href="http://rdio.com<%= artistUrl %>" target="_blank"><%= artist %></a>
-          </div></br>
-          <div class="artist label list-label-other">
-            <a href="http://rdio.com<%= albumUrl %>" target="_blank"><%= album %></a>
-          </div>
-        </div>
+          <!--<a href="http://www.rdio.com<%= url %>" target="_blank" class="site btn">View on Rdio.com</a>
+          <a href="<%= appUrl %>" target="_blank" class="app btn">View in Rdio app</a>-->
+        </div>          
       </div>
-      </br>
-    </script>
-  </head>
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <center>
-            <form class="search">
-              <div class="search_bar">
-                Find artists from&nbsp;
-                <input type="text" value="Detroit, MI" placeholder="Champaign, IL"/>
-                <button class="btn btn-danger" style="margin-top: -10px;" type="submit">Go</button>
-                <div class="error"></div>
-              </div>
-            </form>
-          </center>
+      <div class="albumInfo">
+        <div class="title label list-label-title">
+          <a href="http://rdio.com<%= url %>" target="_blank"><%= name %></a>
+        </div></br>
+        <div class="artist label list-label-other">
+          <a href="http://rdio.com<%= artistUrl %>" target="_blank"><%= artist %></a>
+        </div></br>
+        <div class="artist label list-label-other">
+          <a href="http://rdio.com<%= albumUrl %>" target="_blank"><%= album %></a>
         </div>
-
-
-        <div id="local">listen local</div>
-
-        <div id="about"><a href="#" onclick="AboutListenLocal();">About</a></div>
-
-        <div class="current-user" height="50" width="50" style=""><!--User Photo--></div>
-        <div class="current-user-name" style=""><!--User Name--></div>
-
-        <button class="btn btn-success login-button">Login to Rdio</button>
-
-
-        <div id="poweredby"><a href="http://www.rdio.com/">Powered by Rdio</a></div>
-        <!--<img id="rdioLogo" src="./img/logo.png">-->
-        <div class="nav-collapse collapse">
-        </div><!--/.nav-collapse -->
       </div>
     </div>
+    </br>
+  </script>
+  
+</head>
+<body>
 
-    <div id="map" class="map"></div>
+  <div id="topbar" class="navbar navbar-inverse navbar-fixed-top" style="height: 95px;">  
+    <section id="left-top-bar" class="col-md-2 col-sm-2" style="height: 95px;">
+      <!--<div id="local" style="color: #FFF;">listen local</div>-->
+      <h3 style="color: #FFF;">listen local</h3>
+      <span><a href="#" onclick="AboutListenLocal();">About</a></span>
+      <!--<div id="about"><a href="#" onclick="AboutListenLocal();">About</a></div>-->
+    </section>
 
-    <div style="height: 90px;"></div>
+    <section id="middle-top-bar" class="col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1" style="height: 95px;">
+      <form class="search" >
+        <!--<div class="search_bar">-->
+          <!--<span class="visible-lg visible-md">-->Find artists from&nbsp;<!--</span>-->
+            <input type="text" value="Detroit, MI" placeholder="Champaign, IL"/>
+            <button class="btn btn-danger" style="margin-top: -4px;" type="submit">Go</button>
+          <span class="error"></span>
+        <!--</div>-->
+      </form>
+    </section>
 
-    <div class="results" style="width: 70%; margin-left: 15%;"></div>
+    <section id="right-top-bar" class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 text-right" style="height: 95px;">
+      <div id="poweredby"><a href="http://www.rdio.com/">Powered by Rdio</a></div>
+      <div class="current-user-name" style="color: #FFF"><!--User Name--></div>
+      <div class="current-user pull-right" height="50" width="50" style=""><!--User Photo--></div>
+      <button class="btn btn-success login-button">Login to Rdio</button>
+    </section>
+  </div>
 
-      <div class="navbar navbar-inverse navbar-fixed-bottom">
-
-        <div class="navbar-inner">
-
-<div class="header">
-
-      <div id="playerControls" class="section">
-        <button class="prev"><img id="prev_btn" src="img/prev.png"></button>
-        <button class="play"><img id="play_btn" src="img/play.png"></button>
-        <button class="next"><img id="next_btn" src="img/next.png"></button>
+<!--
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner" style="height: 95px;">
+      <div class="container">
+        <center>
+          <form class="search">
+            <div class="search_bar">
+              Find artists from&nbsp;
+              <input type="text" value="Detroit, MI" placeholder="Champaign, IL"/>
+              <button class="btn btn-danger" style="margin-top: -4px;" type="submit">Go</button>
+              <div class="error"></div>
+            </div>
+          </form>
+        </center>
       </div>
 
-      <div class="section" style="text-align: center; margin: auto 0; width: 65%; float: left;">
-        <!--
-        <div class="track label">Not Playing</div>
-        <div class="label"> - </div>
-        <div class="artist label"></div></br>
-      -->
-        <span class="track">Not Playing</span>
-        <span class="dash"></span>
-        <span class="artist"></span></br>
-      </div>
+      <div id="local" style="color: #FFF;">listen local</div>
+
+      <div id="about"><a href="#" onclick="AboutListenLocal();">About</a></div>
+
+      <div class="current-user visible-lg visible-md" height="50" width="50" style=""><!--User Photo- -></div>
+      <div class="current-user-name" style=""><!--User Name- -></div>
+
+      <button class="btn btn-success login-button">Login to Rdio</button>
 
 
-      <div class="section" style="float: right;">
-        <center><img class="icon" src="img/noalbum.png"></center>
-      </div>
-      
-</div>
+      <div id="poweredby"><a href="http://www.rdio.com/">Powered by Rdio</a></div>
+      <!--<img id="rdioLogo" src="./img/logo.png">- ->
+      <div class="nav-collapse collapse">
+      </div><!--/.nav-collapse - ->
+    </div>
+  </div>
+-->
 
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  <div style="height: 95px;"></div> <!-- Buffer for the top navbar! -->
 
-              <span class="icon-bar"></span>
+  <div id="map" class="map visible-lg visible-md"></div>
 
-              <span class="icon-bar"></span>
+<!--  <div class="results" style="width: 70%; margin-left: 15%;"></div>-->
+  <div class="results"></div>
 
-              <span class="icon-bar"></span>
-
-            </button>
-
-            
-            <div class="nav-collapse collapse">
-
-
-            </div><!--/.nav-collapse -->
-
-          <!--</div> /// container -->
-
+  <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="trackinfo">
+        <div id="playerControls" class="section">
+          <button class="prev"><img id="prev_btn" src="img/prev.png"></button>
+          <button class="play"><img id="play_btn" src="img/play.png"></button>
+          <button class="next"><img id="next_btn" src="img/next.png"></button>
         </div>
 
+        <div class="section" style="text-align: center; margin: auto 0; width: 65%; float: left;">
+          <!--
+          <div class="track label">Not Playing</div>
+          <div class="label"> - </div>
+          <div class="artist label"></div></br>
+          -->
+          <span class="track" style="color: #FFF;">Not Playing</span>
+          <span class="dash" style="color: #FFF;"></span>
+          <span class="artist" style="color: #FFF;"></span></br>
+        </div>
+
+
+        <div class="section" style="float: right;">
+          <center><img class="icon" src="img/noalbum.png"></center>
+        </div>
+      
       </div>
+    </div>
+  </div>
 
-      <div style="height: 205px;"></div>
+  <div style="height: 205px;"></div>
 
-  </body>
+</body>
 </html>

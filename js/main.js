@@ -2,17 +2,14 @@ var geocoder = null;
 var mapZoom = 15;
 
 function initialize() {
-  console.log("initialize()");
   geocoder = new google.maps.Geocoder();
-  
 }
 
 function AboutListenLocal() {
-  alert("hello!!!!");
+  alert("AboutListenLocal");
 }
 
 function codeAddress(address) {
-  console.log("codeAddress()");
   var address = address;
   console.log("address : "+address);
   geocoder.geocode( { 'address': address}, function(results, status) {
@@ -74,10 +71,11 @@ $(function () {
             keys: keys_list
           },
           success: function (response) {
+            //console.log("getArtistsForLocation success");
             self.getTopSongsForArtists(response);
           },
           error: function (response) {
-            
+            console.log("getArtistsForLocation error");
           }
         });
       });
@@ -122,7 +120,7 @@ $(function () {
 
       R.ready(function() {
         R.player.queue.on("add", self.keyAdded);
-        var $play = $(".header .play")
+        var $play = $(".trackinfo .play")
           .click(function() {
             if (R.player.playingTrack() == null) {
               if (self.queue.length != 0) {
@@ -134,7 +132,7 @@ $(function () {
             }
           });
         
-        $(".header .next")
+        $(".trackinfo .next")
           .click(function() {
             // R.player.next();
             if (self.currentTrackIndex < self.queue.length - 1 && self.queue.length > 0) {
@@ -148,7 +146,7 @@ $(function () {
             }
           });
         
-        $(".header .prev")
+        $(".trackinfo .prev")
           .click(function() {
             if (R.player.position() > 0 || self.currentTrackIndex == 0) {
               R.player.previous();
@@ -175,13 +173,14 @@ $(function () {
                 + R.currentUser.get("lastName"));
             }
             $(".login-button").css("display", "none");
+            $("#poweredby").css("display", "none");
           });
         
         R.player.on("change:playingTrack", function (track) {
-          $(".header .icon").attr("src", track.get("icon"));
-          $(".header .track").text(track.get("name"));
-          $(".header .dash").text(" - ");
-          $(".header .artist").text(track.get("artist"));
+          $(".trackinfo .icon").attr("src", track.get("icon"));
+          $(".trackinfo .track").text(track.get("name"));
+          $(".trackinfo .dash").text(" - ");
+          $(".trackinfo .artist").text(track.get("artist"));
           // if (self.previousTrackIndex != -1) {
             // prevEl = $(".results").find("[data-key=" + self.queue[self.previousTrackIndex] + "]");
           $(".results").find(".list-play").html('<img src="img/playart.png" style="margin: 50px;">');
@@ -219,6 +218,7 @@ $(function () {
         });
         if (R.authenticated()) {
           $(".login-button").css("display", "none");
+          $("#poweredby").css("display", "none");
 
           $(".current-user").css("background-image", "url(" + R.currentUser.get("icon") + ")");
           $(".current-user-name").text("Logged in as " 
