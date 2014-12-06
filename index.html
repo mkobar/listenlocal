@@ -19,6 +19,7 @@
   <script src="lib/modernizr.touch.js"></script>
   <script src="lib/underscore-1.4.4.min.js"></script>
   <script src="utils/rdio-utils.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
 
   <script id="album-template" type="text/template">
@@ -53,8 +54,7 @@
     <section id="left-top-bar" class="col-md-2 col-sm-2" style="height: 95px;">
       <!--<div id="local" style="color: #FFF;">listen local</div>-->
       <h3 style="color: #FFF;">listen local</h3>
-      <span><a href="#" onclick="AboutListenLocal();">About</a></span>
-      <!--<div id="about"><a href="#" onclick="AboutListenLocal();">About</a></div>-->
+      <span><a href="#"  data-toggle="modal" data-target="#aboutModal">About</a></span>
     </section>
 
     <section id="middle-top-bar" class="col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1" style="height: 95px;">
@@ -147,6 +147,21 @@
   </div>
 
   <div style="height: 205px;"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">About</h4>
+      </div>
+      <div class="modal-body">
+        <img src="img/us.png"/>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
