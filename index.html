@@ -8,9 +8,8 @@
   <link rel="stylesheet" type="text/css" href="css/leaflet.css">
   <link rel="stylesheet" type="text/css" href="lib/normalize.css">
   <link rel="stylesheet" type="text/css" href="utils/rdio-utils.css">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css/eric.css">
+  <link rel="stylesheet" type="text/css" href="css/listenlocal.css">
   <script src="lib/jquery-1.11.1.min.js"></script>
   <script src="lib/leaflet.js"></script>
   <script src="https://www.rdio.com/api/api.js?client_id=fDFrx0ROVLxiPYvN_q3gmQ"></script>
@@ -65,7 +64,7 @@
       <div class="current-user"><!--User Photo--></div>
       <div class="current-user-name" style=""><!--User Name--></div>
       <button class="btn btn-success login-button">Login</button>
-      
+
       <div id="local">listen local</div>
     </div>
   </nav>
@@ -103,9 +102,15 @@
           </div>
 
           <div id="playerControls" class="section">
-            <button class="prev"><img id="prev_btn" src="img/prev.png"></button>
-            <button class="play"><img id="play_btn" src="img/play.png"></button>
-            <button class="next"><img id="next_btn" src="img/next.png"></button>
+            <button class="prev" id="prevButton" type="button" style="color: #FFF; font-size: 20px; padding-right: 15px; padding-left: 15px;">
+              <span class="glyphicon glyphicon-fast-backward"></span>
+            </button>
+            <button class="play" id="playButton" type="button" style="color: #FFF; font-size: 30px; padding-right: 15px; padding-left: 15px;">
+              <span class="glyphicon glyphicon-play"></span>
+            </button>
+            <button class="next" id="nextButton" type="button" style="color: #FFF; font-size: 20px; padding-right: 15px; padding-left: 15px;">
+              <span class="glyphicon glyphicon-fast-forward"></span>
+            </button>
           </div>
 
         </div>
