@@ -8,18 +8,20 @@ body
 body
 {
 	background-color: #46494D;
+  min-height: 2000px;
+  padding-top: 70px;
 }
 
-/*
+
 #local
 {
+  color: #FFFFFF;
   position: fixed;
-  top: 15px;
-  left: 15px;
-  font-size: 32px;
-  padding: 10px;
+  top: 5px;
+  left: 5px;
+  font-size: 24px;
 }
-
+/*
 #about
 {
   position: fixed;
@@ -28,11 +30,13 @@ body
   font-size: 13px;
 }
 */
+/*
 #playerControls
 {
 	left: 0;
 	padding-left: 20px;
 }
+*/
 /*
 #poweredby
 {
@@ -81,12 +85,6 @@ body
 .list-play:hover
 {
 	opacity: 1.0;
-}
-
-.search_bar
-{
-  padding-top: 20px;
-  font-size: 20px;
 }
 
 .map,
@@ -150,27 +148,24 @@ map:hover
 .login-button
 {
   position: fixed;
-  right: 0px; 
-  top: 25px;
-  margin-right: 7px;
+  right: 3px; 
+  top: 3px;
 }
 
 .current-user
 {
-  /*
   position: fixed; 
   top: 0px; 
   right: 0px; 
   margin-top: 25px;
   margin-right: 7px;
-  */
   height: 50px; 
   width: 50px;
   border-radius: 50px;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
 }
-/*
+
 .current-user-name
 {
   color: #909397;
@@ -181,7 +176,6 @@ map:hover
   text-align: right;
   top: 0px; 
   right: 0px; 
-  margin-top: 77px;
+  margin-top: 7px;
   margin-right: 7px;
 }
-*/

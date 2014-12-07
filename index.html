@@ -9,8 +9,7 @@
   <link rel="stylesheet" type="text/css" href="lib/normalize.css">
   <link rel="stylesheet" type="text/css" href="utils/rdio-utils.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/eric.css">
   <script src="lib/jquery-1.11.1.min.js"></script>
   <script src="lib/leaflet.js"></script>
@@ -50,118 +49,89 @@
 </head>
 <body>
 
-  <div id="topbar" class="navbar navbar-inverse navbar-fixed-top" style="height: 95px;">  
-    <section id="left-top-bar" class="col-md-2 col-sm-2" style="height: 95px;">
-      <!--<div id="local" style="color: #FFF;">listen local</div>-->
-      <h3 style="color: #FFF;">listen local</h3>
-      <span><a href="#"  data-toggle="modal" data-target="#aboutModal">About</a></span>
-    </section>
 
-    <section id="middle-top-bar" class="col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1" style="height: 95px;">
-      <form class="search" >
-        <!--<div class="search_bar">-->
-          <!--<span class="visible-lg visible-md">-->Find artists from&nbsp;<!--</span>-->
-            <input type="text" value="Detroit, MI" placeholder="Champaign, IL"/>
-            <button class="btn btn-danger" style="margin-top: -4px;" type="submit">Go</button>
-          <span class="error"></span>
-        <!--</div>-->
+
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container" style="height: 95px; width: 400px; margin: 0 auto; text-align: center;">
+
+
+      <form class="search" >Find artists from&nbsp;</br>
+        <input type="text" value="Detroit, MI" size="20" placeholder="Champaign, IL"/>
+        <button class="btn btn-danger" style="margin-top: -4px;" type="submit">Go</button>
+        <span class="error"></span>
       </form>
-    </section>
 
-    <section id="right-top-bar" class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 text-right" style="height: 95px;">
-      <div id="poweredby"><a href="http://www.rdio.com/">Powered by Rdio</a></div>
-      <div class="current-user-name" style="color: #FFF"><!--User Name--></div>
-      <div class="current-user pull-right" height="50" width="50" style=""><!--User Photo--></div>
-      <button class="btn btn-success login-button">Login to Rdio</button>
-    </section>
-  </div>
-
-<!--
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner" style="height: 95px;">
-      <div class="container">
-        <center>
-          <form class="search">
-            <div class="search_bar">
-              Find artists from&nbsp;
-              <input type="text" value="Detroit, MI" placeholder="Champaign, IL"/>
-              <button class="btn btn-danger" style="margin-top: -4px;" type="submit">Go</button>
-              <div class="error"></div>
-            </div>
-          </form>
-        </center>
-      </div>
-
-      <div id="local" style="color: #FFF;">listen local</div>
-
-      <div id="about"><a href="#" onclick="AboutListenLocal();">About</a></div>
-
-      <div class="current-user visible-lg visible-md" height="50" width="50" style=""><!--User Photo- -></div>
-      <div class="current-user-name" style=""><!--User Name- -></div>
-
-      <button class="btn btn-success login-button">Login to Rdio</button>
-
-
-      <div id="poweredby"><a href="http://www.rdio.com/">Powered by Rdio</a></div>
-      <!--<img id="rdioLogo" src="./img/logo.png">- ->
-      <div class="nav-collapse collapse">
-      </div><!--/.nav-collapse - ->
+      <div class="current-user"><!--User Photo--></div>
+      <div class="current-user-name" style=""><!--User Name--></div>
+      <button class="btn btn-success login-button">Login</button>
+      
+      <div id="local">listen local</div>
     </div>
-  </div>
--->
+  </nav>
 
-  <div style="height: 95px;"></div> <!-- Buffer for the top navbar! -->
+  <!--Buffer for the top navbar-->
+  <div style="height: 95px;"></div>
 
-  <div id="map" class="map visible-lg visible-md"></div>
+  <div id="map" class="map"></div>
 
-<!--  <div class="results" style="width: 70%; margin-left: 15%;"></div>-->
+  <!--  <div class="results" style="width: 70%; margin-left: 15%;"></div>-->
   <div class="results"></div>
 
-  <div class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="navbar-inner">
-      <div class="trackinfo">
-        <div id="playerControls" class="section">
-          <button class="prev"><img id="prev_btn" src="img/prev.png"></button>
-          <button class="play"><img id="play_btn" src="img/play.png"></button>
-          <button class="next"><img id="next_btn" src="img/next.png"></button>
-        </div>
 
-        <div class="section" style="text-align: center; margin: auto 0; width: 65%; float: left;">
-          <!--
-          <div class="track label">Not Playing</div>
-          <div class="label"> - </div>
-          <div class="artist label"></div></br>
-          -->
-          <span class="track" style="color: #FFF;">Not Playing</span>
-          <span class="dash" style="color: #FFF;"></span>
-          <span class="artist" style="color: #FFF;"></span></br>
-        </div>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="container" style="width:300px; margin: 0 auto; text-align: center;">
+      <div>
+        <div class="trackinfo">
+          <div class="section">
+            <!--
+            <div class="track label">Not Playing</div>
+            <div class="label"> - </div>
+            <div class="artist label"></div></br>
+            -->
+            <span class="track" style="color: #FFF;">Not Playing</span>
+            <span class="dash" style="color: #FFF;"></span>
+            <span class="artist" style="color: #FFF;"></span></br>
 
+            <!--
+            <div class="navbar-right">
+              <img class="icon" src="img/noalbum.png">
+            </div>
+            -->
 
-        <div class="section" style="float: right;">
-          <center><img class="icon" src="img/noalbum.png"></center>
+          </div>
+
+          <div id="playerControls" class="section">
+            <button class="prev"><img id="prev_btn" src="img/prev.png"></button>
+            <button class="play"><img id="play_btn" src="img/play.png"></button>
+            <button class="next"><img id="next_btn" src="img/next.png"></button>
+          </div>
+
         </div>
       
       </div>
     </div>
-  </div>
+  </nav>
+
+
 
   <div style="height: 205px;"></div>
 
-<!-- Modal -->
-<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">About</h4>
-      </div>
-      <div class="modal-body">
-        <img src="img/us.png"/>
+  <!-- Modal -->
+  <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">About</h4>
+        </div>
+        <div class="modal-body">
+          <img src="img/us.png"/>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 </body>
 </html>

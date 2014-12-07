@@ -220,7 +220,7 @@ $(function () {
           $(".login-button").css("display", "none");
           $("#poweredby").css("display", "none");
 
-          $(".current-user").css("background-image", "url(" + R.currentUser.get("icon") + ")");
+          //$(".current-user").css("background-image", "url(" + R.currentUser.get("icon") + ")");
           $(".current-user-name").text("Logged in as " 
             + R.currentUser.get("firstName") + " " 
             + R.currentUser.get("lastName"));
