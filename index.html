@@ -21,8 +21,12 @@
   <script src="js/main.js"></script>
 
   <script id="album-template" type="text/template">
+
+
+
     <div class="album" data-key="<%= key %>">
-      <div class="icon" style="background-image: url(<%= icon %>)">
+
+      <div class="icon hidden-xs" style="background-image: url(<%= icon %>)">
         <div class="buttons">
           <span class="list-play"><img src="img/playart.png" style="margin: 50px;"></span>
             
@@ -30,7 +34,7 @@
           <a href="<%= appUrl %>" target="_blank" class="app btn">View in Rdio app</a>-->
         </div>          
       </div>
-      <div class="albumInfo">
+      <div class="albumInfo hidden-xs">
         <div class="title label list-label-title">
           <a href="http://rdio.com<%= url %>" target="_blank"><%= name %></a>
         </div></br>
@@ -41,7 +45,32 @@
           <a href="http://rdio.com<%= albumUrl %>" target="_blank"><%= album %></a>
         </div>
       </div>
+
+      <div class="icon visible-xs" style="background-image: url(<%= icon %>)">
+        <div class="buttons">
+          <span class="list-play"><img src="img/playart.png" style="margin: 50px;"></span>
+            
+          <!--<a href="http://www.rdio.com<%= url %>" target="_blank" class="site btn">View on Rdio.com</a>
+          <a href="<%= appUrl %>" target="_blank" class="app btn">View in Rdio app</a>-->
+        </div>          
+      </div>
+      <div class="albumInfoMobile visible-xs">
+        <div class="title label list-label-title">
+          <a href="http://rdio.com<%= url %>" target="_blank"><%= name %></a>
+        </div></br>
+        <div class="artist label list-label-other">
+          <a href="http://rdio.com<%= artistUrl %>" target="_blank"><%= artist %></a>
+        </div></br>
+        <div class="artist label list-label-other">
+          <a href="http://rdio.com<%= albumUrl %>" target="_blank"><%= album %></a>
+        </div>
+      </div>
+
+      <div class="mobile-buffer visible-xs"><br /><br /></div>
+
     </div>
+
+
     </br>
   </script>
   
@@ -52,7 +81,7 @@
 
   <!-- Fixed navbar -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container" style="height: 95px; width: 400px; margin: 0 auto; text-align: center;">
+    <div class="container" style="color: #909397; height: 95px; width: 320px; margin: 0 auto; text-align: center; padding-top: 8px;">
 
 
       <form class="search" >Find artists from&nbsp;</br>
@@ -70,7 +99,7 @@
   </nav>
 
   <!--Buffer for the top navbar-->
-  <div style="height: 95px;"></div>
+  <div style="height: 20px;"></div>
 
   <div id="map" class="map"></div>
 
