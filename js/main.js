@@ -5,10 +5,6 @@ function initialize() {
   geocoder = new google.maps.Geocoder();
 }
 
-function AboutListenLocal() {
-  alert("AboutListenLocal");
-}
-
 function codeAddress(address) {
   var address = address;
   console.log("address : "+address);
@@ -209,11 +205,13 @@ $(function () {
           if (state === R.player.PLAYSTATE_PLAYING || state === R.player.PLAYSTATE_BUFFERING) {
             //$play.text("pause");
             //$play.html("<img src='./img/pause.png'>");
-            $("img[src='./img/play.png']").attr('src','./img/pause.png');
+            $("#playpause").removeClass("glyphicon-play").addClass("glyphicon-pause");
+            //$("img[src='./img/play.png']").attr('src','./img/pause.png');
           } else {
             //$play.text("play");
             //$play.html("<img src='./img/play.png'>");
-            $("img[src='./img/pause.png']").attr('src','./img/play.png');
+            $("#playpause").removeClass("glyphicon-pause").addClass("glyphicon-play");
+            //$("img[src='./img/pause.png']").attr('src','./img/play.png');
           }
         });
         if (R.authenticated()) {
@@ -363,6 +361,10 @@ $(function () {
   // ----------
   $(document).ready(function() {
     
+    //$("#playpause").click(function() {
+    //  $(this).toggleClass("glyphicon-play glyphicon-pause");
+    //});
+
     var options = {
       dragging: false,
       touchZoom: false,
@@ -370,7 +372,6 @@ $(function () {
       doubleClickZoom: false,
       boxZoom: false,
       tap: false
-
     }
 
     map = L.map('map', options);

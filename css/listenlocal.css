@@ -1,4 +1,3 @@
-
 .trackinfo
 {/*
   overflow: hidden;
@@ -39,24 +38,28 @@
   padding-top: 30px;
 }
 
-/* do media query for .album to line things up properly!*/ 
-
-@media(max-width:767px){
-
 .results
 {
-  padding-left: 60px;
+  padding-top: 10px;
   /*text-align: center;*/
 }
+
+@media(max-width: 767px){
+
+  .album
+  {
+    height: 275px;
+    width: 200px;
+  }
 }
 
-@media(min-width:768px){
+@media(min-width: 768px){
 
-.results
-{
-  padding: 10px;
-  /*text-align: center;*/
-}
+  .album
+  {
+    height: 240px;
+    width: 800px;
+  }
 }
 /*
 }
@@ -91,12 +94,9 @@
 {
   position: relative;
   /*margin: 0 20px 20px 0;*/
-  /*width: 200px;*/
-  width: 800px;
   margin-left: auto;
   margin-right: auto;
   display: block;
-  height: 240px;
 }
 
 .album .icon
